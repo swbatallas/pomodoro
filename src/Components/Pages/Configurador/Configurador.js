@@ -1,28 +1,27 @@
-import React, { useState } from 'react'
-import { Button, Container } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Container } from 'react-bootstrap'
 import FormRange from 'react-bootstrap/esm/FormRange'
 import Form from 'react-bootstrap/Form'
 import Timer from '../Timer/Timer'
 
-function Home() {
-    const [ciclos, setCiclos] = useState(5)
-    const [concentracion, setConcentracion] = useState(20)
-    const [descanso, setDescanso] = useState(5)
+function Configurador(props) {
+    const [ciclos, setCiclos] = useState()
+    const [tiempoConcentracion, settiempoConcentracion] = useState()
+    const [tiempoDescanso, setTiempoDescanso] = useState()
 
+    useEffect(() => {
+
+    }, [])
     const handleCiclos = (e) => {
         setCiclos(e.target.value)
     }
 
     const handleConcentracion = (e) => {
-        setConcentracion(e.target.value)
+        settiempoConcentracion(e.target.value)
     }
 
     const handleDescanso = (e) => {
-        setDescanso(e.target.value)
-    }
-
-    const handleClick = (e) => {
-        e.preventDefault()
+        setTiempoDescanso(e.target.value)
     }
 
     return (
@@ -49,27 +48,28 @@ function Home() {
                         defaultValue='20'
 
                     />
-                    <p>{concentracion} minutos</p>
+                    <p>{tiempoConcentracion} minutos</p>
                     <Form.Label>Tiempo de descanso</Form.Label>
                     <FormRange
 
-                        id='DescansoRange'
+                        id='descansoRange'
                         onChange={handleDescanso}
                         min='5' max='20'
                         defaultValue='5'
 
                     />
-                    <p>{descanso} minutos</p>
-                    <Button onClick={handleClick}>Empezar!</Button>
+                    <p>{tiempoDescanso} minutos</p>
                 </Form>
             </Container>
             <Timer
+                setCiclos={setCiclos}
                 ciclos={ciclos}
-                concentracion={concentracion}
-                descanso={descanso}
+                tiempoConcentracion={tiempoConcentracion}
+                tiempoDescanso={tiempoDescanso}
+                key={[tiempoConcentracion, tiempoDescanso]}
             />
         </>
     )
 }
 
-export default Home
+export default Configurador
