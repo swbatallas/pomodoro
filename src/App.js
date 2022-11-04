@@ -12,7 +12,7 @@ function App() {
   const [descansoActivo, setDescansoActivo] = useState(false)
 
   const [minutos, setMinutos] = useState()
-  const [segundos, setSegundos] = useState(5)
+  const [segundos, setSegundos] = useState(59)
 
   useEffect(() => {
     setMinutos(tiempoConcentracion)
