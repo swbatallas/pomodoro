@@ -1,27 +1,34 @@
 
 import React, { useEffect, useState } from 'react'
-import './App.css';
 import Configurador from './Components/EstablecerCiclos';
 import Cronometro from './Components/Cronometro';
+import { Container } from 'react-bootstrap';
 
 function App() {
 
-  const [minutos, setMinutos] = useState(1)
-  const [segundos, setSegundos] = useState(59)
   const [ciclos, setCiclos] = useState(5)
   const [tiempoConcentracion, setTiempoConcentracion] = useState(20)
-  const [tiempoDescanso, setTiempoDescanso] = useState(5)
+  const [tiempoDescanso, setTiempoDescanso] = useState(59)
   const [descansoActivo, setDescansoActivo] = useState(false)
+
+  const [minutos, setMinutos] = useState(tiempoConcentracion)
+  const [segundos, setSegundos] = useState(5)
+
+
 
   useEffect(() => {
     if (ciclos !== 0) {
-      descansoActivo ? setMinutos(tiempoDescanso) : setMinutos(tiempoConcentracion)
+      if (descansoActivo && minutos === 0) {
+        setMinutos(tiempoDescanso)
+      }
+      else if (!descansoActivo && minutos === 0) {
+        setMinutos(tiempoConcentracion)
+      }
     }
-    if (descansoActivo && minutos === 0 && segundos === 0) setCiclos(ciclos - 1)
   }, [ciclos, setCiclos, minutos, segundos, descansoActivo, tiempoConcentracion, tiempoDescanso])
 
   return (
-    <div className="App">
+    <Container className='d-flex flex-column justify-content-center align-items-center my-5 w-75'>
       <Configurador
         ciclos={ciclos}
         setCiclos={setCiclos}
@@ -39,7 +46,7 @@ function App() {
         setSegundos={setSegundos}
         setDescansoActivo={setDescansoActivo}
       />
-    </div>
+    </Container>
   );
 }
 

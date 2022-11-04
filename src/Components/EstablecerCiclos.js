@@ -28,42 +28,37 @@ function Configurador(props) {
     }
 
     return (
-        <>
-            <Container className='bg-light border border-primary
-            rounded d-flex justify-content-center
-            align-items-center mt-5'>
-                <Form className='m-4 text-primary'>
-                    <Form.Label>Numero de ciclos</Form.Label>
-                    <FormRange id='ciclosRange'
-                        onChange={handleCiclos}
-                        min='1'
-                        max='10'
-                        defaultValue={ciclos}
-                    />
-                    <p>{ciclos}</p>
+        <Container className='bg-light border border-primary rounded m-2'>
+            <Form className='m-3 text-primary'>
+                <Form.Label>Numero de ciclos</Form.Label>
+                <FormRange id='ciclosRange'
+                    onChange={handleCiclos}
+                    min='1'
+                    max='10'
+                    defaultValue={ciclos}
+                />
+                <p>{ciclos}</p>
 
-                    <Form.Label>Tiempo de concentracion</Form.Label>
-                    <FormRange id='concentracionRange'
-                        onChange={handleConcentracion}
-                        min='20'
-                        max='60'
-                        step='5'
-                        defaultValue={tiempoConcentracion}
-                    />
-                    <p>{tiempoConcentracion}</p>
+                <Form.Label>Tiempo de concentracion</Form.Label>
+                <FormRange id='concentracionRange'
+                    onChange={handleConcentracion}
+                    min='20'
+                    max='60'
+                    step='5'
+                    defaultValue={tiempoConcentracion}
+                />
+                <p>{tiempoConcentracion}</p>
 
-                    <Form.Label>Tiempo de descanso</Form.Label>
-                    <FormRange
-                        id='descansoRange'
-                        onChange={handleDescanso}
-                        min='5' max='20'
-                        defaultValue={tiempoDescanso}
-                    />
-                    <p>{tiempoDescanso}</p>
-
-                </Form>
-            </Container>
-        </>
+                <Form.Label>Tiempo de descanso</Form.Label>
+                <FormRange
+                    id='descansoRange'
+                    onChange={handleDescanso}
+                    min='5' max='20'
+                    defaultValue={tiempoDescanso}
+                />
+                <p>{tiempoDescanso}</p>
+            </Form>
+        </Container>
     )
 }
 
