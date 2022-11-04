@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import FormRange from 'react-bootstrap/esm/FormRange'
 import Form from 'react-bootstrap/Form'
-import Timer from '../Timer/Timer'
 
 function Configurador(props) {
-    const [ciclos, setCiclos] = useState()
-    const [tiempoConcentracion, settiempoConcentracion] = useState()
-    const [tiempoDescanso, setTiempoDescanso] = useState()
+    const { ciclos,
+        setCiclos,
+        tiempoConcentracion,
+        setTiempoConcentracion,
+        tiempoDescanso,
+        setTiempoDescanso,
+    } = props
 
     useEffect(() => {
 
-    }, [])
+    })
     const handleCiclos = (e) => {
         setCiclos(e.target.value)
     }
 
     const handleConcentracion = (e) => {
-        settiempoConcentracion(e.target.value)
+        setTiempoConcentracion(e.target.value)
     }
 
     const handleDescanso = (e) => {
@@ -35,39 +38,31 @@ function Configurador(props) {
                         onChange={handleCiclos}
                         min='1'
                         max='10'
-                        defaultValue='5'
-
+                        defaultValue={ciclos}
                     />
-                    <p>{ciclos} ciclos</p>
+                    <p>{ciclos}</p>
+
                     <Form.Label>Tiempo de concentracion</Form.Label>
                     <FormRange id='concentracionRange'
                         onChange={handleConcentracion}
                         min='20'
                         max='60'
                         step='5'
-                        defaultValue='20'
-
+                        defaultValue={tiempoConcentracion}
                     />
-                    <p>{tiempoConcentracion} minutos</p>
+                    <p>{tiempoConcentracion}</p>
+
                     <Form.Label>Tiempo de descanso</Form.Label>
                     <FormRange
-
                         id='descansoRange'
                         onChange={handleDescanso}
                         min='5' max='20'
-                        defaultValue='5'
-
+                        defaultValue={tiempoDescanso}
                     />
-                    <p>{tiempoDescanso} minutos</p>
+                    <p>{tiempoDescanso}</p>
+
                 </Form>
             </Container>
-            <Timer
-                setCiclos={setCiclos}
-                ciclos={ciclos}
-                tiempoConcentracion={tiempoConcentracion}
-                tiempoDescanso={tiempoDescanso}
-                key={[tiempoConcentracion, tiempoDescanso]}
-            />
         </>
     )
 }
