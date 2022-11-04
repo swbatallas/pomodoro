@@ -8,13 +8,15 @@ function App() {
 
   const [ciclos, setCiclos] = useState(5)
   const [tiempoConcentracion, setTiempoConcentracion] = useState(20)
-  const [tiempoDescanso, setTiempoDescanso] = useState(59)
+  const [tiempoDescanso, setTiempoDescanso] = useState(5)
   const [descansoActivo, setDescansoActivo] = useState(false)
 
-  const [minutos, setMinutos] = useState(tiempoConcentracion)
+  const [minutos, setMinutos] = useState()
   const [segundos, setSegundos] = useState(5)
 
-
+  useEffect(() => {
+    setMinutos(tiempoConcentracion)
+  }, [tiempoConcentracion])
 
   useEffect(() => {
     if (ciclos !== 0) {
@@ -25,7 +27,7 @@ function App() {
         setMinutos(tiempoConcentracion)
       }
     }
-  }, [ciclos, setCiclos, minutos, segundos, descansoActivo, tiempoConcentracion, tiempoDescanso])
+  }, [ciclos, minutos, descansoActivo, tiempoConcentracion, tiempoDescanso])
 
   return (
     <Container className='d-flex flex-column justify-content-center align-items-center my-5 w-75'>
